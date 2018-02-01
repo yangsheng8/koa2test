@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>CSS3手势变换动画特效DEMO演示</title>
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+</head>
+
+<body>
+    <div class="hand" id="thumb">
+        <div class="finger"></div>
+        <div class="finger"></div>
+        <div class="finger"></div>
+        <div class="finger"></div>
+        <div class="finger thumb"></div>
+        <div class="arm"></div>
+        <div class="numBox">点赞总数：<span class="numCount"></span></div>
+    </div>
+    <span class="hide" id="animation">+1</span>
+
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.js"></script>
+    <script src="http://cdn.bootcss.com/systemjs/0.20.2/system.js"></script>
+    <script src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js"></script>
+      <script type="text/javascript" src="/js/add.js"></script>
+      <script type="text/javascript">
+    SystemJS.config({
+        baseURL: '/js'
+    });
+    SystemJS.import('index-es.js').then(function(m) {
+        //将thumb挂载到jquery中的操作
+        $.extend({
+                thumb: m.default.Thumb
+
+        });
+        callBack();//new出来的回调，实现点击事件
+
+    });
+    function callBack(){
+         var f = new $.thumb(0, $('#thumb'));
+        f.clickAction();
+    }
+
+axios.get('/api/users/getUser').then(function (response) {
+        console.log(response);
+         $(".numCount").html(response.data.num);
+    }).catch(function (error) {
+        console.log(error);
+    });
+    </script>
+</body>
+
+</html>
