@@ -13,3 +13,8 @@
 
 >views文件夹：存放模板
 
+主要用到：  
+
+request-promise 把php对接口的操作封装成一个小模块  
+Axios 是一个基于 promise 的 HTTP 库，可以用在浏览器和 node.js 中。这次在模板中， 用它发送两个GET请求，一个是点击更新数据库，另一个是拉取数据。
+
