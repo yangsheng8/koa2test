@@ -19,14 +19,10 @@ app.use(views(path.join(__dirname, './views'), {
   extension: 'ejs'
 }))
 
+//加载数据库api
 router.use('/api', api.routes(), api.allowedMethods());
 
-router.get('/hello/:name', async (ctx, next) => {
-    var name = ctx.params.name;
-    ctx.response.body = `<h1>Hello, ${name}!</h1>`;
-});
-
-
+//设置路径访问模板index
 router.get('/index/index', async ( ctx ) => {
   await ctx.render('index', {
     num:"hello"
@@ -36,5 +32,5 @@ router.get('/index/index', async ( ctx ) => {
 
 app.use(router.routes());
 app.listen(3000,()=>{
-    console.log('[demo] server is starting at port 3000');
+    console.log('server is starting at port 3000');
 })
